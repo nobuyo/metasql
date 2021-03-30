@@ -5,6 +5,7 @@ Gem::Specification.new do |spec|
   spec.version       = Metasql::VERSION
   spec.authors       = ['Nobuo Takizawa']
   spec.email         = ['longzechansheng@gmail.com']
+  spec.licenses      = ['MIT']
 
   spec.summary       = 'Resolve parameters of Metabase flavored query.'
   spec.homepage      = 'https://github.com/nobuyo/metasql'
