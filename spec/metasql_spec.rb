@@ -4,8 +4,8 @@ RSpec.describe Metasql do
       [
         {
           raw: 'select * from foo where bar=1',
-          processed: 'select * from foo where bar=1',
-        },
+          processed: 'select * from foo where bar=1'
+        }
       ]
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Metasql do
           raw: 'select * from foo where bar={{baz}}',
           processed: "select * from foo where bar='hello'",
           parameters: { baz: 'hello' }
-        },
+        }
       ]
     end
 
@@ -40,7 +40,9 @@ RSpec.describe Metasql do
 
     it 'should raise error when not supplied value to required params' do
       queries.map do |query|
-        expect { Metasql::Parser.parse(query[:raw]).deparse }.to raise_error(Metasql::ParameterMissing)
+        expect do
+          Metasql::Parser.parse(query[:raw]).deparse
+        end.to raise_error(Metasql::ParameterMissing)
       end
     end
   end
@@ -51,13 +53,13 @@ RSpec.describe Metasql do
         {
           raw: 'select * from foo where bar={{baz}} and chit={{chat}}',
           processed: 'select * from foo where bar=1 and chit=5',
-          parameters: { baz: 1, chat: 5 },
+          parameters: { baz: 1, chat: 5 }
         },
         {
           raw: 'select * from foo where bar={{baz}}\n or chit={{chit}}',
           processed: "select * from foo where bar='hello'\\n or chit='chat'",
           parameters: { baz: 'hello', chit: 'chat' }
-        },
+        }
       ]
     end
 
@@ -82,7 +84,7 @@ RSpec.describe Metasql do
           processed: 'select * from foo where true ',
           processed_without_paramter: 'select * from foo where true ',
           parameters: { baz: nil }
-        },
+        }
       ]
     end
 
@@ -114,7 +116,7 @@ RSpec.describe Metasql do
           processed: "select * from foo where true and bar='hi' and chit=3",
           processed_without_paramter: 'select * from foo where true  ',
           parameters: { baz: 'hi', chat: 3 }
-        },
+        }
       ]
     end
 
@@ -130,10 +132,10 @@ RSpec.describe Metasql do
     let(:queries) do
       [
         {
-          raw: 'select * from foo where bar={{}',
+          raw: 'select * from foo where bar={{}'
         },
         {
-          raw: 'select * from foo where true [[ and bar=1 ]]',
+          raw: 'select * from foo where true [[ and bar=1 ]]'
         },
         {
           raw: 'select * from foo [[where bar = {{baz}}'
@@ -143,7 +145,9 @@ RSpec.describe Metasql do
 
     it 'should raise error' do
       queries.map do |query|
-        expect { Metasql::Parser.parse(query[:raw]).deparse }.to raise_error(Metasql::InvalidQueryError)
+        expect do
+          Metasql::Parser.parse(query[:raw]).deparse
+        end.to raise_error(Metasql::InvalidQueryError)
       end
     end
   end

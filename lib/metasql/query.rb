@@ -44,7 +44,7 @@ module Metasql
     end
 
     def substitute_param(param:)
-      raise Metasql::ParameterMissing.new(param.name) unless mapping[param.name]
+      raise Metasql::ParameterMissing, param.name unless mapping[param.name]
 
       quote_string(mapping[param.name])
     end
