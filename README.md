@@ -1,7 +1,7 @@
 # Metasql
 
-![Gem](https://img.shields.io/gem/v/metasql?style=flat-square)
-![GitHub](https://img.shields.io/github/license/nobuyo/metasql?style=flat-square)
+[![Gem](https://img.shields.io/gem/v/metasql?style=flat-square)](https://rubygems.org/gems/metasql)
+[![GitHub](https://img.shields.io/github/license/nobuyo/metasql?style=flat-square)](https://github.com/nobuyo/metasql/blob/master/LICENSE)
 
 Metasql is Metabase flavored query preprocessor.
 Provides parameter substitution, optional clause deletion, etc.
